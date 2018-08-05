@@ -39,7 +39,7 @@ const eventEmitter = require('event-emitter');
       someEvent: 0,
     }
   */
-
+```
 ### Unsubscribing
   There are multiple ways to unsubscribe from an event. When you subcribe, the emitter returns an unsubscribe function to the `.on` call:
   
