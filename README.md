@@ -39,7 +39,7 @@ const eventEmitter = require('event-emitter');
       someEvent: 0,
     }
   */
-```
+  ```
 ### Unsubscribing
   There are multiple ways to unsubscribe from an event. When you subcribe, the emitter returns an unsubscribe function to the `.on` call:
   
@@ -60,8 +60,8 @@ const eventEmitter = require('event-emitter');
   // The handler will unsubscribe itself
   ```
   #### `.resetSubscriptionsForEvent(eventName)`
-    Will clear all subscriptions for a given event
+  Will clear all subscriptions for a given event
   #### `.resetAllSubscriptions()`
-    Will clear all subscriptions for all events
+  Will clear all subscriptions for all events
   
   
