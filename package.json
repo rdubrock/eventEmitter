@@ -1,0 +1,14 @@
+{
+  "name": "event-emitter",
+  "version": "1.0.0",
+  "description": "An even emitter",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest --env=node"
+  },
+  "author": "Russ DuBrock",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^23.4.2"
+  }
+}
