@@ -28,7 +28,7 @@ const eventEmitter = require('event-emitter');
 #### `.once(eventName, eventHandler)`
   The subscription will automatically be removed after the first firing.
 #### `.showEventSubscriptions()`
-  Will should number of subscriptions per event
+  Will show number of subscriptions per event
 ### Unsubscribing
   There are multiple ways to unsubscribe from an event. When you subcribe, the emitter returns an unsubscribe function to the `.on` call:
   
