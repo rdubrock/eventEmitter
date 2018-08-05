@@ -27,7 +27,6 @@ describe('EventEmitter.js', () => {
 
   test('emitter.emit should fire event handlers', () => {
     emitter.buildUnsubscribe = buildUnsubscribeMock;
-    emitter.unsubscribe = unsubscribeMock;
     emitter.on('myEvent', eventHandler);
     emitter.on('myEvent', secondEventHandler);
     emitter.emit('myEvent', 'some', 'arguments', 'could', 'be', 'lots');
@@ -36,9 +35,20 @@ describe('EventEmitter.js', () => {
   });
 
   test('emitter.once should only fire a subscription once', () => {
+    emitter.buildUnsubscribe = buildUnsubscribeMock;
     emitter.once('singleUse', eventHandler);
     emitter.emit('singleUse', 'withData');
-    emitter.emit('singleUse', 'secondTime');
-    expect(eventHandler).toHaveBeenCalledTimes(1);
+    expect(eventHandler).toHaveBeenCalledWith('withData', unsubscribeMock);
+    expect(unsubscribeMock).toHaveBeenCalled();
+  });
+  
+  test('event handlers should be provided an unsubscribe function', () => {
+    //const handler =  (arg1, arg2, arg3, unsubscribe) => { unsubscribe() };
+    emitter.buildUnsubscribe = buildUnsubscribeMock; 
+    eventHandler.mockImplementation((arg1, arg2, arg3, unsubscribe) => unsubscribe());
+    emitter.on('myEvent', eventHandler);
+    emitter.emit('myEvent', 'arg1', 'arg2', 'arg3');
+    expect(eventHandler).toHaveBeenCalledWith('arg1', 'arg2', 'arg3', unsubscribeMock);
+    expect(unsubscribeMock).toHaveBeenCalled();
   });
 });
